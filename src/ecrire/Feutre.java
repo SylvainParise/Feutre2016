@@ -17,16 +17,16 @@ public class Feutre {
     TableauBlanc monTableau;
 
     // constructeurs
-    public Feutre() {
+    public Feutre(TableauBlanc monT) {
         reservoir = new Encre();
         estBouche = true;
-        monTableau = new TableauBlanc("Tableau Blanc");
+        monTableau = monT;
     }
 
-    public Feutre(int capacite, String coul) {
+    public Feutre(int capacite, String coul,TableauBlanc monT) {
         reservoir = new Encre(capacite, coul);
         estBouche = true;
-        monTableau = new TableauBlanc("Tableau Blanc");                
+        monTableau = monT;                
     }
 
     //Operations
