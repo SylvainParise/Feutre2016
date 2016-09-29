@@ -17,12 +17,23 @@ public class Feutre {
     TableauBlanc monTableau;
 
     // constructeurs
+    public Feutre() {
+        reservoir = new Encre();
+        estBouche = true;
+        monTableau = new TableauBlanc("Tableau Blanc");
+    }
+    
     public Feutre(TableauBlanc monT) {
         reservoir = new Encre();
         estBouche = true;
         monTableau = monT;
     }
 
+    public Feutre(int capacite, String coul) {
+        reservoir = new Encre(capacite, coul);
+        estBouche = true;
+        monTableau =  new TableauBlanc("Tableau Blanc");                
+    }
     public Feutre(int capacite, String coul,TableauBlanc monT) {
         reservoir = new Encre(capacite, coul);
         estBouche = true;
@@ -73,6 +84,10 @@ public class Feutre {
     private void print(char texte){
         //System.out.print(texte);
         monTableau.afficher(Character.toString(texte));
+    }
+
+    public TableauBlanc getMonTableau() {
+        return monTableau;
     }
 
 } //End Class Feutre
