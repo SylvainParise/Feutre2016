@@ -1,6 +1,7 @@
 package ecrire;
 
 import afficher.TableauBlanc;
+import afficher.TableauErreur;
 
 /**
  * ************************************************************************
@@ -15,6 +16,7 @@ public class Feutre {
     //Attributes Association
     private Encre reservoir;
     private static TableauBlanc monTableau = null;
+    private static TableauErreur maConsole = null;
 
     // constructeurs
     public Feutre() {
@@ -26,6 +28,9 @@ public class Feutre {
         estBouche = true;
         if (null == monTableau) {
             monTableau = new TableauBlanc("Tableau Blanc");
+        }
+        if (null == maConsole) {
+            maConsole = new TableauErreur("Console");
         }
     }
 
@@ -51,12 +56,12 @@ public class Feutre {
 
     public void boucher() {
         estBouche = true;
-        System.err.println("!!!! Le feutre est bouché");
+        printErr("!!!! Le feutre est bouché");
     }
 
     public void deboucher() {
         estBouche = false;
-        System.err.println("!!!! Le feutre est débouché");
+        printErr("!!!! Le feutre est débouché");
     }
     /*
      on teste si le feutre est débouché, ensuite on verifie caractère par 
@@ -65,7 +70,7 @@ public class Feutre {
 
     public void ecrire(String texte) {
         if (this.estBouche()) {// le feutre n'est pas débouché : message d'erreur
-            System.err.println("#### Le feutre est bouché !!!");
+            printErr("#### Le feutre est bouché !!!");
         } else {
             int i = 0;
             boolean fin = reservoir.estVide() || i >= texte.length();
@@ -76,9 +81,9 @@ public class Feutre {
             }
             print('\n');
             if (reservoir.estVide()) {
-                System.err.println("#### Le réservoir est vide !!!");
+                printErr("#### Le réservoir est vide !!!");
             }
-            System.err.println("!!!! Il reste " + reservoir.getNvEncre() + " caractères dans mon réservoir");
+            printErr("!!!! Il reste " + reservoir.getNvEncre() + " caractères dans mon réservoir");
         }
     }
 
@@ -87,6 +92,11 @@ public class Feutre {
         monTableau.afficher(Character.toString(texte));
     }
 
+    private void printErr(String texte) {
+        //System.err.print(texte);
+        maConsole.afficher(texte);
+    }
+    
     public TableauBlanc getMonTableau() {
         return monTableau;
     }

@@ -3,7 +3,7 @@ package afficher;
 import java.awt.*;// biblioth�que graphique originale
 import javax.swing.*;// biblioth�que graphique plus 'moderne' qui respecte les Design Pattern
 
-public class FrmAffichageText implements AffichageTxt{
+public class FrmAffichageText implements AffichageTxt, AffichageErr {
    JFrame frmTableau;
    JTextArea txtTableau;
    JPanel pnlTableau;
@@ -38,6 +38,10 @@ public class FrmAffichageText implements AffichageTxt{
        frmTableau.setVisible(true);
    }
 
+   public JTextArea getTxtTableau(){
+       return txtTableau;
+   }
+   
    public FrmAffichageText() {
 	   this(10,10,0,0,"Sans Titre");
    }

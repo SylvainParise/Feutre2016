@@ -2,7 +2,7 @@ package afficher;
 
 public class TableauBlanc {
     // Pour simuler la description de l'écran utilisé
-    private boolean estGraphique = false;
+    private boolean estGraphique = true;
 
     private String contenu;
     private AffichageTxt fenetre;
@@ -14,6 +14,7 @@ public class TableauBlanc {
     public TableauBlanc(int hauteur, int largeur, int x, int y, String titre) {
         contenu = new String();
         if (estGraphique) {
+            
             fenetre = new FrmAffichageText(hauteur, largeur, x, y, titre);
         } else {
             fenetre = new Console();
