@@ -13,33 +13,34 @@ public class Feutre {
 
     private boolean estBouche;
     //Attributes Association
-    Encre reservoir;
-    TableauBlanc monTableau;
+    private Encre reservoir;
+    private static TableauBlanc monTableau = null;
 
     // constructeurs
     public Feutre() {
-        reservoir = new Encre();
-        estBouche = true;
-        monTableau = new TableauBlanc("Tableau Blanc");
-    }
-    
-    public Feutre(TableauBlanc monT) {
-        reservoir = new Encre();
-        estBouche = true;
-        monTableau = monT;
+        this(100,"noir");
     }
 
     public Feutre(int capacite, String coul) {
         reservoir = new Encre(capacite, coul);
         estBouche = true;
-        monTableau =  new TableauBlanc("Tableau Blanc");                
-    }
-    public Feutre(int capacite, String coul,TableauBlanc monT) {
-        reservoir = new Encre(capacite, coul);
-        estBouche = true;
-        monTableau = monT;                
+        if (null == monTableau) {
+            monTableau = new TableauBlanc("Tableau Blanc");
+        }
     }
 
+    /*public Feutre(TableauBlanc monT) {
+     reservoir = new Encre();
+     estBouche = true;
+     monTableau = monT;
+     }
+
+     public Feutre(int capacite, String coul,TableauBlanc monT) {
+     reservoir = new Encre(capacite, coul);
+     estBouche = true;
+     monTableau = monT;                
+     }
+     */
     //Operations
     /**
      * renvoie l'état du bouchon du feutre
@@ -77,11 +78,11 @@ public class Feutre {
             if (reservoir.estVide()) {
                 System.err.println("#### Le réservoir est vide !!!");
             }
-            System.err.println("!!!! Il reste "+reservoir.getNvEncre()+" caractères dans mon réservoir");
+            System.err.println("!!!! Il reste " + reservoir.getNvEncre() + " caractères dans mon réservoir");
         }
     }
-    
-    private void print(char texte){
+
+    private void print(char texte) {
         //System.out.print(texte);
         monTableau.afficher(Character.toString(texte));
     }
