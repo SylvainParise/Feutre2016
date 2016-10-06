@@ -2,6 +2,7 @@ package ecrire;
 
 import afficher.TableauBlanc;
 import afficher.TableauErreur;
+import java.util.Objects;
 
 /**
  * ************************************************************************
@@ -100,6 +101,43 @@ public class Feutre {
     public TableauBlanc getMonTableau() {
         return monTableau;
     }
+    
+    @Override
+    public String toString(){
+        String xml="<feutre>\n\t";
+        xml+="<estBouche>\n\t"+Boolean.toString(estBouche)+"\n\t</estBouche>\n\t";
+        xml+="<reservoir>\n\t"+reservoir.toString()+"</reservoir>\n\t";
+        xml+="<monTableau>\n\t"+monTableau.toString()+"</monTableau>\n\t";
+        xml+="<maConsole>\n\t"+maConsole.toString()+"</maConsole>\n";
+        return xml+"</feutre>";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (this.estBouche ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.reservoir);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Feutre other = (Feutre) obj;
+        if (this.estBouche != other.estBouche) {
+            return false;
+        }
+        if (!Objects.equals(this.reservoir, other.reservoir)) {
+            return false;
+        }
+        return true;
+    }
+    
 
 } //End Class Feutre
 

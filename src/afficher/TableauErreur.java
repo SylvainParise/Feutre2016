@@ -5,6 +5,8 @@
  */
 package afficher;
 
+import pseudoSystem.PseudoSystem;
+
 
 
 /**
@@ -15,9 +17,10 @@ public class TableauErreur {
     
     private AffichageErr maConsole;
     private String contenu;
-    private boolean estGraphique = true;
+    private boolean estGraphique ;
 
     public TableauErreur(String titre) {
+        estGraphique= PseudoSystem.estGraphique;
          if (estGraphique) {
             
             maConsole = new FrmAffichageTextCouleur(20, 20, 1500, 0, titre);
@@ -32,5 +35,10 @@ public class TableauErreur {
         contenu += texte;
     }
     
-    
+    @Override
+    public String toString(){
+        String xml="<TableauErreur>\n\t";
+        xml+="<estGraphique>\n\t"+Boolean.toString(estGraphique)+"\n\t</estGraphique>\n\t";
+        return xml+"</TableauErreur>";
+    }
 }

@@ -53,5 +53,13 @@ public class Encre {
         return (nvEncre<=0);
     }
 
+     @Override
+    public String toString(){
+        String xml="<encre>\n\t";
+        xml+="<nvEncre>\n\t"+Integer.toString(nvEncre)+"\n\t</nvEncre>\n\t";
+        xml+="<libCouleur>\n\t"+libCouleur+"</libCouleur>\n\t";
+        return xml+"</encre>";
+    }
+    
 } //End Class Encre
 
